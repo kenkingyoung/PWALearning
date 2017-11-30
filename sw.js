@@ -1,19 +1,17 @@
-// // 缓存的名称
-// // 我们将进入 Service Worker 的安装事件
-// // 使用我们指定的缓存名称来打开缓存
-// // 把 JavaScript 和 图片文件添加到缓存中
-var cacheName = 'helloWorld';
-// self.addEventListener('install', event => {
-//     event.waitUntil(
-//         caches.open(cacheName)
-//         .then(cache => cache.addAll([
-//             'js/scripts.js',
-//             'images/hello.jpg'
-//         ]))
-//     );
-// });
+/* ======================= 缓存静态资源(预缓存) ======================= */
 
-/* =========================== 缓存静态资源 =========================== */
+// 把 JavaScript 和 图片文件添加到缓存中
+var cacheName = 'helloWorld';
+// 为 Service Worker 的安装事件 install 事件添加事件监听器以拦截请求
+self.addEventListener('install', event => {
+    event.waitUntil(
+        // 使用我们指定的缓存名称来打开缓存
+        caches.open(cacheName)
+        .then(cache => cache.addAll([
+            'js/scripts.js'
+        ]))
+    );
+});
 
 // // 为 fetch 事件添加事件监听器以拦截请求
 // self.addEventListener('fetch', event => {
