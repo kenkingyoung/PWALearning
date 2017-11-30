@@ -30,13 +30,14 @@ self.addEventListener('install', event => {
 // });
 
 
-/* ===================== 缓存动态资源(先拦截再缓存) ===================== */
+/* =========== 缓存动态资源(先拦截再缓存，缓存任何获取的新资源) =========== */
 
 // 为 fetch 事件添加事件监听器以拦截请求
 self.addEventListener('fetch', function(event) {
     event.respondWith(
         // 检查请求的资源是否存在于缓存之中
-        caches.match(event.request)
+        // 当检查缓存时忽略查询字符串
+        caches.match(event.request, { ignoreSearch: true })
         .then(function(response) {
             // 如果匹配的话，就此返回缓存并不再继续执行
             if (response) {
