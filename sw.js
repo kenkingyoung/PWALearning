@@ -2,7 +2,7 @@
 // // 我们将进入 Service Worker 的安装事件
 // // 使用我们指定的缓存名称来打开缓存
 // // 把 JavaScript 和 图片文件添加到缓存中
-// var cacheName = 'helloWorld';
+var cacheName = 'helloWorld';
 // self.addEventListener('install', event => {
 //     event.waitUntil(
 //         caches.open(cacheName)
